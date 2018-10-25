@@ -1,0 +1,28 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "experimentingWIthNodeJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "watch": "node_modules/.bin/jest --coverage --watchAll"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
+  "author": "Andrei Vasile",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0"
+  }
+}

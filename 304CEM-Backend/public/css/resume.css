@@ -1,0 +1,306 @@
+html {
+    scroll-behavior: smooth
+}
+
+/* set default margin and padding for all elements */
+* { 
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    @media only screen and (max-width: 500px) {
+        body{width: 500px;}
+    }
+
+    #tableOfContent {display: none;}
+    #photoTop {position: absolute; left: 0; top: 0; height: 66px; width: 66px; margin: 8px 0 0 8px;}
+    #allSocialButtons {margin: -100px 0 0 12px;}
+    
+    .font-size-15px {font: 15px Helvetica, Sans-Serif;}
+    .skillInfo {padding: 0 0 0 12px;}
+
+    .col-xs-1 {width: 8.33%;}
+    .col-xs-2 {width: 16.66%;}
+    .col-xs-3 {width: 25%;}
+    .col-xs-4 {width: 33.33%;}
+    .col-xs-5 {width: 41.66%;}
+    .col-xs-6 {width: 50%;}
+    .col-xs-7 {width: 58.33%;}
+    .col-xs-8 {width: 66.66%;}
+    .col-xs-9 {width: 75%;}
+    .col-xs-10 {width: 83.33%;}
+    .col-xs-11 {width: 91.66%;}
+    .col-xs-12 {width: 100%;}
+}
+ 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+    #tableOfContent {display: none;}
+    #photoTop {position: absolute; right: 0; top: 0; height: 136px; width: 136px; margin: 8px 8px 0 0;}
+    #nameTitle {left:0;}
+    #allSocialButtons{position: fixed; right: 0; bottom: 0; margin: 0 8px 36px 0;}
+
+    .font-size-15px {font: 15px Helvetica, Sans-Serif;}
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}    
+}
+
+@media only screen and (max-width: 768px) {
+    #bigScreenPic {display: none;}
+    body {background-color: rgb(230, 230, 230);}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+    #photoTop {display: none;}
+    #tableOfContent {display: initial;}
+    #bigScreenPic {height: auto; width: auto; margin: -100px 0 0 16px;}
+    #personalInfo {height: auto; margin: 100px 0 0 -154px;}
+
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}    
+}
+
+[class*="col-"] {
+    float: left;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* set the page default font and background color*/
+body { 
+    font: 16px Helvetica, Sans-Serif; 
+    line-height: 24px;  
+}
+
+/* do not allow non floating element to align with floating elements */
+.clear { 
+    clear: both; 
+}
+
+.displayNone {
+    display: none;
+}
+
+#tableOfContent {
+    /* background-color: pink; */
+    height: 200px;
+}
+
+#tableOfContent h2 {
+    margin-left: 16px;
+    font-style: italic;
+    padding: 0 0 0 20%;
+}
+
+#tableOfContent li:hover {
+    color: #666;
+}
+
+#tableOfContent ul {
+    padding: 0 0 0 20%;
+}
+
+#tableOfContent ul a {
+    color: black;
+}
+
+#tableOfContent ul a li {
+    margin-top: 3px;
+}
+
+/* set resume width and margin */
+#mainContent { 
+    margin: 40px auto 0px; 
+}
+
+/* main resume title margine and font style and also the line underneath */
+h1 { 
+    margin: 0 0 16px 0; 
+    padding: 0 0 16px 0; 
+    font-size: 42px; 
+    font-weight: bold; 
+    letter-spacing: -2px; 
+    border-bottom: 1px solid #999; 
+    text-align: center;
+}
+
+ /* set main photo position and margin relative to the near contents */
+.picFilter { 
+    filter: grayscale(100%);
+    border-radius: 8px;
+}
+
+.social-media-button {
+    padding: 2px;
+    height: 44px;
+    margin: 0 2px 0 2px;
+}
+
+.social-media-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+ /* set paragraph defaul margin */
+p {
+    margin: 0 0 16px 8px; 
+}
+
+#email {
+    font-family: Georgia, Serif; 
+    font-style: italic; 
+    color: #666;
+}
+
+#email:hover {
+    color: black;
+}
+
+.hover:hover {
+    text-decoration: underline; 
+    cursor: pointer;
+}
+
+#personalInfo #email {
+    font-family: Georgia, Serif; 
+    font-style: italic; 
+    color: #666;
+}
+
+#coverLetter p { 
+    font-family: Georgia, Serif; 
+    font-style: italic; 
+    color: #666; 
+    /* margin-right: 20%; */
+} 
+
+/*format h2 titles */
+h2 { 
+    font-size: 20px; 
+    margin: 0 0 6px 0;
+    position: relative; 
+}
+
+h2 span { 
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    font-style: italic; 
+    font-family: Georgia, Serif; 
+    font-size: 16px; 
+    color: #999; 
+    font-weight: normal; 
+}
+
+/* set margin for our unordered list */
+ul {
+    margin: 0 0 32px 17px;
+}
+
+
+/* format the resume using Euro style */
+/* dt contains section titles and will float to the left */
+dt { 
+    font-style: italic; 
+    font-weight: bold; 
+    font-size: 18px; 
+    text-align: right; 
+    padding: 0 26px 0 0; 
+    width: 150px; 
+    float: left; 
+    height: 100px; 
+    border-right: 1px solid #999; 
+}
+
+/* dd tags contains details and will float to the right */
+dd { 
+    width: 600px; 
+    float: right; 
+}
+
+/* override default clear behaviour for dd tags */
+dd.clear { 
+    float: none; 
+    margin: 0; 
+    height: 15px; 
+} 
+
+.skillInfo {
+    padding: 0 0 0 12px;
+}
+
+label {
+    width: 8em;
+    float: left;
+    text-align: right;
+    margin-right: 0.5em;
+    display: block
+}
+
+#formButton, #formContainer {
+    margin-bottom: 50px;
+}
+
+#formMessage {
+    height: 50px;;
+}
+
+#contact-submit {
+    text-align: center;
+}
+
+.button {
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 0 20px 0 20px;
+}
+
+.button:hover {
+    background-color: #999;
+    color: white;
+    cursor: pointer;
+}
+
+#footer {
+    margin-bottom: 0px;
+    position: fixed;
+    text-align: center;
+    border: 1px solid #999;
+    background: #666;
+    color: #ddd;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

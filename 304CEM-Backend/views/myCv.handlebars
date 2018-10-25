@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/resume.css">
+    <title>My Resume</title>
+</head>
+
+<body>
+    <div id="mainContent">
+
+        <div class="row">
+            <h1 class="col-xs-12 col-s-9 col-m-12" id="nameTitle">Andrei Vasile</h1>
+        </div>
+
+        <div class="row">
+
+            <dd class="clear"></dd>
+        
+            <div class="row">
+                <img src="images/myPic.png" class="picFilter col-s-3 col-m-4" id="bigScreenPic"/>
+                <span class="">
+                    <div class="col-xs-4 col-m-4 font-size-15px" id="personalInfo">
+                        <p>
+                            <a href="/?lang=en">English</a> | 
+                            <a href="/?lang=fr">French</a> | 
+                            <a href="/?lang=sp">Spanish</a> 
+                        </p>
+                        <p>
+                            Phone: +44 77065 78460
+                            <br/>
+                            Address: 69 Freehold Street, Coventry
+                            <br/>
+                            Email: 
+                            <a id="email" class="hover" href="mailto:andreisvasile@gmail.com">
+                                vasilea2@uni.com
+                            </a>
+                        </p>
+                    </div>
+                </span>
+                <div class="col-xs-8 col-m-4" id="coverLetter">
+                    <p class="font-size-15px">
+                        An ambitious problem solver with a passion for online businesses, and who
+                        would like to join a team of like-minded developers. I have much
+                        experience of creating logical and innovative solutions to complex problems.
+                        <br/>
+                        I am thorough and precise in everything I do, and have a keen interest in
+                        technology, mobile applications and user experience. As someone who takes
+                        responsibility for own personal development, I am continually evaluating
+                        and upgrading my skills so that I stay at the cutting edge of web
+                        development.
+                    </p>
+                </div>
+
+                <div id="tableOfContent" class="col-xs-0 col-m-4">
+                    <h2>{{language}}</h2>
+                    <br />
+                    <h2>Content</h2>
+                    <br/>
+                    <ul>
+                        <a href="#education">
+                            <li class="hover">Education</li>
+                        </a>
+                        <a href="#skills">
+                            <li class="hover">Skills</li>
+                        </a>
+                        <a href="#experience">
+                            <li class="hover">Experience</li>
+                        </a>
+                        <a href="#hobbies">
+                            <li class="hover">Hobbies</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        
+        <span class="">
+            <div class="row">
+                <div class="col-xs-12" id="allSocialButtons">
+                    <a href="https://www.facebook.com/vasileandrei07">
+                        <img src="images/Facebook.png" class="social-media-button col-xs-1" />
+                    </a>
+                    <a href="https://www.instagram.com/vasilepojoandrei/">
+                        <img src="images/LinkedIn.png" class="social-media-button col-xs-1" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/andrei-vasile/">
+                        <img src="images/Instagram.png" class="social-media-button col-xs-1" />
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <img src="images/myPic.png" class="picFilter col-s-3" id="photoTop"/>
+            </div>
+        </span>
+
+        <dl>
+            <dd class="clear"></dd>
+            <div class="row">
+                <dt id="education" class="col-xs-3 col-s-3">Education</dt>
+                <dd class="col-xs-9 col-s-9 skillInfo"> 
+                    <h2>Coventry University 2015 - 2019</h2>
+                    <p>
+                        <strong>Course:</strong> Computer Science
+                        <br/> 
+                        <strong>Degree:</strong> B.SC
+                    </p>
+                </dd>
+            </div>
+            
+            <dd class="clear"></dd>
+            <div class="row">
+                <dt id="skills" class="col-xs-3 col-s-3">Skills</dt>
+                <dd class="col-xs-9 col-s-9 skillInfo">
+                    <h2>Web Development</h2>
+                    <p>
+                        Full stack development, ability to use HTML5, CSS3, and Javascript profe
+                        onally on client and server
+                    </p>
+
+                <h2>Database</h2>
+                    <p> Ability to design and implement databases using mySQL and MongoDB</p>
+                </dd>
+            </div>
+        
+            <dd class="clear"></dd>
+            <div class="row">
+                <dt id="experience" class="col-xs-3 col-s-3">Experience</dt>
+                <dd class="col-xs-9 col-s-9 skillInfo">
+                    <h2>Internship 
+                        <span>
+                            <!-- Some Company - Winchester July 2017 - Aug 2018 -->
+                        </span>
+                    </h2>
+                    
+                    <ul>
+                        <li>Worked on first task description</li>
+                        <li>Helped on another task here</li>
+                        <li>Provided support for a third task</li>
+                    </ul>
+                </dd>
+            </div>
+
+            <dd class="clear"></dd>
+                <div class="row">
+                <dt id="hobbies" class="col-xs-3 col-s-3">Hobbies</dt>
+                <dd class="col-xs-9 col-s-9 skillInfo">
+                        <h2>Activities</h2>
+                    <ul>
+                        <li>Play guitar with my hands</li>
+                        <li>Read books with my eyes</li>
+                        <li>Travel the world with my feet</li>
+                    </ul>
+                </dd>
+            </div>
+        
+            <dd class="clear"></dd>
+        </dl> 
+    </div>
+
+    <div class="row">
+        <p class="col-xs-3 col-s-3"></p>
+        <button id="formButton" class="button" onclick="showForm()">Send me a message</button>
+    </div>
+
+    <div id="formContainer" style="display: none;">
+        <form id="contact" action="/api/v1/messages" method="POST" onsubmit="return validateForm()">
+            <div class="row">
+                    <p class="col-xs-1 col-s-1"></p>
+                <h4>Contact us today, and get reply within 24 hours!</h4>
+            </div>
+
+            <br />
+            
+            <fieldset>
+                    
+                <br />
+
+                <div class="row">
+                    <label class="col-s-3">Name</label>
+                    <input class="col-s-6" name="name" id="formName" placeholder="Your name" type="text" tabindex="1" required autofocus>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <label class="col-s-3">Email address</label>
+                    <input class="col-s-6" name="email" id="formEmail" placeholder="Your Email Address" type="email" tabindex="2" required>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <label class="col-s-3">Phone number</label>
+                    <input class="col-s-6" name="phone" id="formPhone" placeholder="Your Phone Number" type="tel" tabindex="3" required value="00">
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <label class="col-s-3">Website</label>
+                    <input class="col-s-6" name="url" id="formSite" placeholder="Your Web Site starts with http://" type="url" tabindex="4" required>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <label class="col-s-3">Message</label>
+                    <textarea class="col-s-6" name="message" id="formMessage" placeholder="Type your Message Here...." tabindex="5"></textarea>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <label class="col-s-3">Objective</label>
+                    <select class="col-s-6" name="myList">
+                        <option value="jobOffer">Job Offer</option>
+                        <option value="appointment">Appointment</option>
+                        <option value="generalQuestion">General Question</option>
+                    </select>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <p class="col-s-3"></p>
+                    <button class="button" id="contact-submit" datasubmit="Sending">Submit</button>   
+                </div>
+
+                <br />
+
+            </fieldset>
+        </form>
+        <script src="js/validateForm.js"></script>
+    </div> 
+    <p id="footer">Thank you for your time</p>
+</body>
+
+</html>
