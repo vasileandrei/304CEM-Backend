@@ -6,8 +6,12 @@
 const express = require('express');
 const handlebars = require('express-handlebars').create({defaultLayout: 'main'})    // render main.handlebar
 const bodyParser = require('body-parser');
+
+// Custom modules
 const db = require('./modules/database')
 const messages = require('./modules/messages')
+const admin = require('./modules/admin')
+const user = require('./modules/user')
 
 // initiate application using express and set listening port
 const server = express(); 
@@ -22,119 +26,148 @@ server.engine('handlebars', handlebars.engine)
 server.set('view engine', 'handlebars')
 server.use(bodyParser.urlencoded({ extended: false }));
 
-const databaseData = {
-    host: 'sql2.freemysqlhosting.net',
-    user: 'sql2261741',
-    password: 'zR9%aE1*',
-    database: 'sql2261741',
-    port: 3306
-}
-
 // foundation route
-server.get('/', (req, res) => {
-    let lang = ''
-    if(req.query !== undefined && req.query.lang !== undefined) {
-        if (req.query.lang === 'en') lang = 'Welcome'
-        else if (req.query.lang === 'fr') lang = 'Bonjour'
-        else if (req.query.lang === 'sp') lang = 'Bienvenido'
-    }
-    res.render('myCv', {language: lang})
-})
+server.get('/', (req, res) => {res.render('home')})
 
-server.post('/api/v1/messages', (req, res) => {
-    if (req.body) console.log(req.body['formName'])
-    messages.add(databaseData, req, function (err, data) {
-        //tell the client we sending json data
+server.post('/register', (req, res) => {
+    // if (req.body['password'] !== req.body['checkPassword'])
+    user.Register(req, function(err, data) {
         res.setHeader('content-type', 'application/json')
-        res.setHeader('accepts', 'GET, POST') 
+        res.setHeader('accepts', 'GET', 'POST')
         if (err) {
             res.status(400)
             res.end('error: ' + err)
         }
-        res.status(201)
-        res.redirect('/api/v1/messages')
+        if (data.result.ok === 1) res.status(201)
+        else console.log('Something went wrong adding: ' + JSON.stringify(req.body, null, 2))
+        res.send('Successfully added')
     })
 })
 
 server.get('/api/v1/messages', (req, res) => {
-    // let q = ''
-    // let d = ''
-	// if(req.query !== undefined && req.query.q !== undefined) {
-    //     q = req.query.q
-    // }
-    messages.getAll(databaseData, req, function (err, data) {
+    if(req.query !== undefined && req.query.recipe !== undefined) {
+        if (req.query.searchOption === "name"){
+            console.log('Search by name: ', req.query.recipe)
+            messages.FindSomeByName(req, function(err, data) {
+                res.setHeader('content-type', 'application/json')
+                res.setHeader('accepts', 'GET', 'DELETE')
+                if (err) {
+                    res.status(400)
+                    res.end('error: ' + err)
+                }
+                res.status(201)
+                res.send(data)
+            })
+        } else if (req.query.searchOption === "ingredients"){
+            console.log('Search by ingredients: ', req.query.recipe)
+            messages.FindSomeByIngredients(req, function(err, data) {
+                res.setHeader('content-type', 'application/json')
+                res.setHeader('accepts', 'GET')
+                if (err) {
+                    res.status(400)
+                    res.end('error: ' + err)
+                }
+                res.status(201)
+                res.send(data)
+            })
+        }
+    } else {
+        messages.FindSome(function(err, data) {
+            res.setHeader('content-type', 'application/json')
+            res.setHeader('accepts', 'GET')
+            if (err) {
+                res.status(400)
+                res.end('error: ' + err)
+            }
+            res.status(200)
+            res.send(JSON.stringify(data, null, 2))
+        })
+    }
+})
+
+server.post('/api/v1/messages', (req, res) => {
+    messages.AddToCollection(req, function(err, data) {
+        res.setHeader('content-type', 'application/json')
+        res.setHeader('accepts', 'GET', 'POST')
+        if (err) {
+            res.status(400)
+            res.end('error: ' + err)
+        }
+        if (data.result.ok === 1) res.status(201)
+        else console.log('Something went wrong adding: ' + JSON.stringify(req.body, null, 2))
+        res.send('Successfully added')
+    })
+})
+
+server.get('/api/v1/messages/delete', (req, res) => {
+    res.setHeader('content-type', 'application/json')
+    res.setHeader('accepts', 'GET')
+    messages.UpdateByName(req, function (err, data) {
+        if(err) {
+            res.status(400)
+            res.end("an error has occured:" + err)
+            return;
+        }
+        res.status(200)
+        res.send('Successfully deleted ' + data.result)
+    })
+})
+
+server.get('/createCollection', (req, res) => {
+    res.setHeader('content-type', 'application/json')
+    res.setHeader('accepts', 'GET')
+    db.CreateCollection(req, function(err, data) {
+        if(err) {
+            res.status(400)
+            res.end("an error has occured:" + err)
+            return;
+        }
+        res.status(200)
+        res.send('Successfully created ' + data.result)
+    })
+})
+
+server.get('/dropCollection', (req, res) => {
+    res.setHeader('content-type', 'application/json')
+    res.setHeader('accepts', 'GET')
+    db.DropCollection(req, function(err, data) {
+        if(err) {
+            res.status(400)
+            res.end("an error has occured:" + err)
+            return
+        }
+        res.status(200)
+        res.send('Successfully deleted ' + data.result)
+    })
+})
+
+server.get('/api/v1/admin/getAll', (req, res) => {
+    res.setHeader('content-type', 'application/json')
+    res.setHeader('accepts', 'GET')
+    admin.FindAll(function(err, data) {
         res.setHeader('content-type', 'application/json')
         res.setHeader('accepts', 'GET')
-        if(err) {
-            res.status(400);
-            res.end("an error has occured:" + err);
-            return;
+        if (err) {
+            res.status(400)
+            res.end('error: ' + err)
         }
         res.status(200)
-        res.send(data)
-        // res.render('messages', {query: q, data: d})
+        res.send(JSON.stringify(data, null, 2))
     })
 })
 
-server.get('/api/v1/messages/:id', (req, res) => {
-    messages.getById(databaseData, req, function (err, data) {
+server.get('/api/v1/admin/forceDelete', (req, res) => {
+    res.setHeader('content-type', 'application/json')
+    res.setHeader('accepts', 'GET')
+    admin.ForceDelete(req, function(err, data) {
         res.setHeader('content-type', 'application/json')
         res.setHeader('accepts', 'GET')
-        if(err) {
-            res.status(400);
-            res.end("an error has occured:" + err);
-            return;
+        if (err) {
+            res.status(400)
+            res.end('error: ' + err)
         }
         res.status(200)
-        res.end(data)
-    })
-})
-
-// server.put('/api/v1/messages/:id', (req, res) => {
-//     messages.updateById(databaseData, req, function (err, data) {
-//         if(err) {
-//             res.status(400);
-//             res.end("an error has occured:" + err);
-//             return;
-//         }
-//         res.status(200)
-//         res.end(data)
-//     })
-// })
-
-server.delete('/api/v1/messages/:id', (req, res) => {
-    messages.deleteById(databaseData, req, function (err, data) {
-        if(err) {
-            res.status(400);
-            res.end("an error has occured:" + err);
-            return;
-        }
-        res.status(200)
-        res.end(data)
-    })
-})
-
-server.get('/createTables', (req, res) => {
-    db.createTables(databaseData, function(err, state) {
-    if(err) {
-        res.status(400);
-        res.end("an error has occured:" + err);
-        return;
-    }
-    res.status(200);
-    res.end("tables were created successfully");
-    })
-})
-
-server.get('/dropTables', (req, res) => {
-    db.dropTables(databaseData, function(err, state) {
-    if(err) {
-        res.status(400);
-        res.end("an error has occured:" + err);
-        return;
-    }
-    res.status(200);
-    res.end("tables were deleted successfully");
+        res.send(JSON.stringify(data, null, 2))
     })
 })
 

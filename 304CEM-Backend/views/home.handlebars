@@ -1,0 +1,67 @@
+
+<body>
+    <h3>Register</h3>
+    <form action="/register/" method="post">
+        <input type="text" placeholder="Username" name="username">
+        <input type="password" placeholder="password" name="password">
+        <input type="password" placeholder="password" name="passwordCheck">
+        <input type="email" placeholder="email" name="email">
+        <input type="submit" value="Submit">
+    </form>
+    <br />
+
+    <h3>Add recipe</h3>
+    <form action="/api/v1/messages/" method="post">
+        <input type="text" placeholder="Recipe" name="recipe">
+        <input type="text" placeholder="Ingredients" name="ingredients">
+        <input type="text" placeholder="ID" name="id">        
+        <input type="submit" value="Submit">
+    </form>
+    <br />
+
+    <h3>Get recipe that includes</h3>
+    <form action="/api/v1/messages/" method="get">
+        <input type="text" placeholder="Recipe" name="recipe">
+        <select name="searchOption">
+            <option>name</option>
+            <option>ingredients</option>
+        </select>
+        <input type="submit" value="Search">
+    </form>
+    <br />
+
+    <h3>Soft Delete</h3>
+    <form action="/api/v1/messages/delete/" method="get">
+        <input type="text" placeholder="Recipe name" name="name">
+        <input type="submit" value="Delete">
+    </form>
+    <br />
+
+    <br />
+
+    <h2>Admin commands</h2>
+
+    <h3>Create collection</h3>
+    <form action="/createCollection/" method="get">
+        <input type="text" placeholder="Collection Name" name="colName">
+        <input type="submit" value="Create">
+    </form>
+    <br />
+
+    <h3>Delete collection</h3>
+    <form action="/dropCollection/" method="get">
+        <input type="text" placeholder="Collection Name" name="colName">
+        <input type="submit" value="Delete">
+    </form>
+    <br />
+
+    <h3>Get ALL from collection</h3>
+    <a href="/api/v1/admin/getAll/">Get all</a>
+    <br />
+
+    <h3>Force Delete</h3>
+    <form action="/api/v1/admin/forceDelete/" method="get">
+        <input type="text" placeholder="Recipe" name="name">
+        <input type="submit" value="Delete">
+    </form>
+</body>

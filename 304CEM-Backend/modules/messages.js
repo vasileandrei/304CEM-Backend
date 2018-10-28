@@ -1,68 +1,118 @@
 'use strict'
 
-var db = require('./database');
+var MongoClient = require('mongodb').MongoClient
 
-exports.add = function(conData, req, callback) {
-    //first connect to DB
-    db.connect(conData, function(err, con){
-        //when done check for any error 
+const userCredentials = {
+    dbUser: "vasilea2",
+    password: "Vasile.1010"
+}
+
+const mongo = {
+    host: "ds141813.mlab.com",
+    port: "41813",
+    dbName : "mymongodb",
+    collectionName: "test"
+}
+
+var url = `mongodb://${userCredentials['dbUser']}:${userCredentials['password']}@${mongo['host']}:${mongo['port']}/${mongo['dbName']}`
+
+module.exports.AddToCollection = function (req, callback) {
+    let insertObj = {
+        name: req.body['recipe'],
+        ingredients: req.body['ingredients'],
+        deleted: false
+    }
+    if (req.body['id'] !== undefined && req.body['id'] !== '') {
+        insertObj['_id'] = req.body['id']
+    }
+    MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
         if (err) {
             callback(err);
-            return;
+            return
         }
-        //if no error prepare our user object with the values sent by the client
-        let message = {
-            name: req.body['name'],
-            email: req.body['email'],
-            url: req.body['url'],
-            message: req.body['message']
-        }
-        if (req.body['id'] !== undefined && req.body['id'] !== '') {
-            message['id'] = req.body['id']
-        }
-        //perform the query 
-        con.query('INSERT INTO Messages SET ?', message, function (err, result) {
-            //return control to the calling module
-            callback(err, message);
+        var dbo = db.db(mongo['dbName']);
+        dbo.collection(mongo['collectionName']).insertOne(insertObj, function(err, res) {
+            if (err) {
+                callback(err);
+                return
+            }
+            callback(null, res)
+            db.close();
         })
     })
 }
 
-exports.getById = function(conData, req, callback) {
-    db.connect(conData, function(err, data) {
+module.exports.FindSome = function (callback) {
+    MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
         if (err) {
             callback(err)
             return
         }
-        data.query(`SELECT * FROM Messages WHERE id = ${req.params.id}`, function (err, result) {
-            let data = JSON.stringify(result, null, 2)
-            callback(err, data)
+        var dbo = db.db(mongo['dbName']);
+        dbo.collection(mongo['collectionName']).find({deleted: {$eq: false}}).toArray(function(err, result) {
+        if (err) {
+            console.log('Error')
+            callback(err)
+            return
+        }
+        callback(null, result)
+        db.close()
+        })
+    })
+}
+  
+module.exports.FindSomeByName = function (body, callback) {
+    MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
+        if (err) {
+            callback(err)
+            return
+        }
+        var dbo = db.db(mongo['dbName']);
+        dbo.collection(mongo['collectionName']).find({"name" : {$regex : `.*${body.query.recipe}.*`}, deleted: {$eq: false}}).toArray(function(err, result) {
+        if (err) {
+            console.log('Error')
+            callback(err)
+            return
+        }
+        callback(null, result)
+        db.close()
         })
     })
 }
 
-exports.getAll = function(conData, req, callback) {
-    db.connect(conData, function(err, data) {
+  module.exports.FindSomeByIngredients = function (body, callback) {
+    MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
         if (err) {
             callback(err)
             return
         }
-        data.query('SELECT * FROM Messages',function (err, result) {
-            let data = JSON.stringify(result, null, 2)
-            callback(err, data)
+        var dbo = db.db(mongo['dbName']);
+        dbo.collection(mongo['collectionName']).find({"ingredients" : {$regex : `.*${body.query.recipe}.*`}, deleted: {$eq: false}}).toArray(function(err, result) {
+            if (err) {
+                console.log('Error')
+                callback(err)
+                return
+            }
+            callback(null, result)
+            db.close()
         })
     })
 }
-
-exports.deleteById = function(conData, req, callback) {
-    db.connect(conData, function(err, data) {
+  
+module.exports.UpdateByName = function (body, callback) {
+    MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
         if (err) {
             callback(err)
             return
         }
-        data.query(`DELETE FROM Messages WHERE id = ${req.params.id}`, function (err, result) {
-            let data = JSON.stringify(result, null, 2)
-            callback(err, data)
+        var dbo = db.db(mongo['dbName']);
+        dbo.collection(mongo['collectionName']).findOneAndUpdate({"name": body.query.name}, {$set: {deleted: true}}, function(err, res) {
+            if (err) {
+                callback(err)
+                return
+            }
+            callback(null, res)
+            db.close()
         })
     })
 }

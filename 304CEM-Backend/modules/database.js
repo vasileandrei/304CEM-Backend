@@ -1,44 +1,53 @@
 'use strict'
 
-const mysql = require('mysql');
+var MongoClient = require('mongodb').MongoClient
 
-exports.connect = function(conData, callback){
-    var con = mysql.createConnection({
-        host: conData.host,
-        user: conData.user,
-        password: conData.password,
-        database: conData.database
-    })
-    con.connect(function(err) {
-        if (err) callback(err);
-        callback(null, con);
-    })
+const userCredentials = {
+  dbUser: "vasilea2",
+  password: "Vasile.1010"
 }
 
-module.exports.createTables = function(conData ,callback) {
-    const con = mysql.createConnection({
-        host: conData.host,
-        user: conData.user,
-        password: conData.password,
-        database: conData.database
-    })
-    const sql = "CREATE TABLE Messages (id INTEGER PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), email VARCHAR(30), url VARCHAR(30), message VARCHAR(4096))"
-    con.query(sql, function(err, result) {
-        console.log('finish query: ' + result)
-        callback(err, result)
-    })
+const mongo = {
+  host: "ds141813.mlab.com",
+  port: "41813",
+  dbName : "mymongodb",
+  collectionName: "test"
 }
 
-module.exports.dropTables = function(conData ,callback) {
-    const con = mysql.createConnection({
-        host: conData.host,
-        user: conData.user,
-        password: conData.password,
-        database: conData.database
+var url = `mongodb://${userCredentials['dbUser']}:${userCredentials['password']}@${mongo['host']}:${mongo['port']}/${mongo['dbName']}`
+
+module.exports.CreateCollection = function (body, callback) {
+  MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
+    if (err) {
+      callback(err)
+      return
+    }
+    var dbo = db.db(mongo['dbName'])
+    dbo.createCollection(body.query.colName, function(err, res) {
+      if (err) {
+        callback(err)
+        return
+      }
+      callback(null, res)
+      db.close()
     })
-    const sql = "DROP TABLE Messages"
-    con.query(sql, function(err, result) {
-        console.log('finish query: ' + result)
-        callback(err, result)
+  })
+}
+
+module.exports.DropCollection = function (body, callback) {
+  MongoClient.connect(url, {useNewUrlParser: true}, function(err, db) {
+    if (err) {
+      callback(err)
+      return
+    }
+    var dbo = db.db(mongo['dbName'])
+    dbo.dropCollection(body.query.colName, function(err, res) {
+      if (err) {
+        callback(err)
+        return
+      }
+      callback(null, res)
+      db.close()
     })
+  })
 }
