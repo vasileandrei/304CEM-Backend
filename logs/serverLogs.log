@@ -1,0 +1,240 @@
+2018-12-08 19:24:06.658 INFO  Created new Hash for user admin 
+2018-12-08 19:27:17.336 INFO  Retrieved information for user admin1 
+2018-12-08 19:27:17.355 INFO  Created new Hash for user admin1 
+2018-12-08 19:27:17.569 INFO  Created new user admin1 
+2018-12-08 19:27:31.761 INFO  Retrieved information for user admin1 
+2018-12-08 19:40:58.112 INFO  Retrieved information for user admin1 
+2018-12-08 19:40:58.129 INFO  Comparing hash for user admin1 
+2018-12-08 19:41:53.966 INFO  Retrieved information for user admin1 
+2018-12-08 19:41:53.971 INFO  Created new Hash for user admin1 
+2018-12-08 19:41:54.217 INFO  Registered new user admin1 
+2018-12-08 19:42:00.175 INFO  Retrieved information for user admin1 
+2018-12-08 19:42:00.178 INFO  Comparing hash for user admin1 
+2018-12-08 19:42:35.726 INFO  Retrieved information for user admin1 
+2018-12-08 19:42:35.746 INFO  Comparing hash for user admin1 
+2018-12-08 19:43:01.802 INFO  Retrieved information for user admin1 
+2018-12-08 19:43:01.812 INFO  Comparing hash for user admin1 
+2018-12-08 19:44:58.159 INFO  Retrieved information for user admin1 
+2018-12-08 19:44:58.168 INFO  Comparing hash for user admin1 
+2018-12-08 19:45:11.890 INFO  Retrieved information for user admin1 
+2018-12-08 19:45:11.900 INFO  Comparing hash for user admin1 
+2018-12-08 19:45:51.732 INFO  Retrieved information for user admin1 
+2018-12-08 19:45:51.745 INFO  Comparing hash for user admin1 
+2018-12-08 19:46:08.690 INFO  Retrieved information for user admin1 
+2018-12-08 19:46:08.712 INFO  Comparing hash for user admin1 
+2018-12-08 19:47:33.222 INFO  Retrieved information for user admin1 
+2018-12-08 19:47:33.238 INFO  Comparing hash for user admin1 
+2018-12-08 19:48:10.906 INFO  Retrieved information for user admin1 
+2018-12-08 19:48:10.928 INFO  Created new Hash for user admin1 
+2018-12-08 19:48:11.147 INFO  Registered new user admin1 
+2018-12-08 19:48:20.596 INFO  Retrieved information for user admin1 
+2018-12-08 19:48:20.598 INFO  Comparing hash for user admin1 
+2018-12-08 19:48:59.192 INFO  Retrieved information for user admin1 
+2018-12-08 19:48:59.208 INFO  Created new Hash for user admin1 
+2018-12-08 19:48:59.418 INFO  Registered new user admin1 
+2018-12-08 19:49:05.119 INFO  Retrieved information for user admin1 
+2018-12-08 19:49:05.121 INFO  Comparing hash for user admin1 
+2018-12-08 19:56:29.167 INFO  Retrieved information for user user 
+2018-12-08 19:56:29.189 INFO  Created new Hash for user user 
+2018-12-08 19:56:29.408 INFO  Registered new user user 
+2018-12-08 19:57:51.128 INFO  Retrieved information for user admin 
+2018-12-08 19:57:51.149 INFO  Created new Hash for user admin 
+2018-12-08 19:57:51.389 INFO  Registered new user admin 
+2018-12-08 19:58:39.461 INFO  Retrieved information for user admin 
+2018-12-08 19:58:39.482 INFO  Comparing hash for user admin 
+2018-12-08 19:58:39.483 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 19:58:59.301 INFO  Retrieved information for user admin 
+2018-12-08 19:58:59.327 INFO  Comparing hash for user admin 
+2018-12-08 19:58:59.330 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 19:59:23.060 INFO  Retrieved information for user admin 
+2018-12-08 19:59:23.073 INFO  Comparing hash for user admin 
+2018-12-08 19:59:23.076 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:01:37.092 INFO  Retrieved information for user admin 
+2018-12-08 20:01:37.107 INFO  Created new Hash for user admin 
+2018-12-08 20:01:37.433 INFO  Registered new user admin 
+2018-12-08 20:01:43.160 INFO  Retrieved information for user admin 
+2018-12-08 20:01:43.162 INFO  Comparing hash for user admin 
+2018-12-08 20:01:43.166 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:02:46.529 INFO  Retrieved information for user admin 
+2018-12-08 20:02:46.541 INFO  Comparing hash for user admin 
+2018-12-08 20:02:46.542 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:02:54.891 INFO  Retrieved information for user admin 
+2018-12-08 20:02:54.901 INFO  Comparing hash for user admin 
+2018-12-08 20:02:54.903 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:03:26.797 INFO  Retrieved information for user admin 
+2018-12-08 20:03:26.820 INFO  Comparing hash for user admin 
+2018-12-08 20:03:26.823 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:03:54.711 INFO  Retrieved information for user admin 
+2018-12-08 20:03:54.721 INFO  Comparing hash for user admin 
+2018-12-08 20:03:54.723 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:04:02.766 INFO  Retrieved information for user admin 
+2018-12-08 20:04:02.788 INFO  Comparing hash for user admin 
+2018-12-08 20:04:02.793 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:04:51.295 INFO  Retrieved information for user admin 
+2018-12-08 20:04:51.321 INFO  Comparing hash for user admin 
+2018-12-08 20:04:51.327 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:08:18.119 INFO  Retrieved information for user admin 
+2018-12-08 20:08:18.128 INFO  Comparing hash for user admin 
+2018-12-08 20:09:02.671 INFO  Retrieved information for user admin 
+2018-12-08 20:09:02.678 INFO  Comparing hash for user admin 
+2018-12-08 20:11:04.732 INFO  Retrieved information for user admin 
+2018-12-08 20:11:04.741 INFO  Comparing hash for user admin 
+2018-12-08 20:11:04.743 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:11:47.546 INFO  Retrieved information for user admin 
+2018-12-08 20:11:47.553 INFO  Comparing hash for user admin 
+2018-12-08 20:11:47.554 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:11:58.431 INFO  Retrieved information for user admin 
+2018-12-08 20:11:58.444 INFO  Comparing hash for user admin 
+2018-12-08 20:11:58.446 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:12:52.901 INFO  Retrieved information for user admin 
+2018-12-08 20:12:52.913 INFO  Comparing hash for user admin 
+2018-12-08 20:12:52.921 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:30:02.727 INFO  Retrieved information for user admin 
+2018-12-08 20:30:02.739 INFO  Comparing hash for user admin 
+2018-12-08 20:30:02.742 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:34:11.490 INFO  Retrieved information for user admin 
+2018-12-08 20:34:11.497 INFO  Comparing hash for user admin 
+2018-12-08 20:34:11.500 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 20:37:33.988 INFO  Created a new post 
+2018-12-08 20:37:52.541 INFO  Created a new post 
+2018-12-08 20:46:42.946 INFO  Retrieved post with id 5c0c2b8dbff3bb4f8823ca53 
+2018-12-08 21:01:44.234 INFO  Updated file 5c0c2b8dbff3bb4f8823ca53, [object Object] 
+2018-12-08 21:03:47.929 INFO  Updated file 5c0c2b8dbff3bb4f8823ca53, [object Object] 
+2018-12-08 21:04:21.955 INFO  Updated file 5c0c2b8dbff3bb4f8823ca53, [object Object] 
+2018-12-08 21:05:09.061 INFO  Soft-deleted file 5c0c2b8dbff3bb4f8823ca53 
+2018-12-08 21:06:41.140 INFO  Soft-deleted file 5c0c117b3551b039e0faa318 
+2018-12-08 21:08:10.539 INFO  Force Deleted post with id 5c0c117b3551b039e0faa318 
+2018-12-08 21:09:09.969 INFO  Retrieved information for user admin 
+2018-12-08 21:09:55.670 INFO  Force Deleted post with id 5c0c232132681048803e8829 
+2018-12-08 21:10:05.776 INFO  Retrieved information for user admin 
+2018-12-08 21:10:05.779 INFO  Created new Hash for user admin 
+2018-12-08 21:10:05.965 INFO  Registered new user admin 
+2018-12-08 21:10:32.968 INFO  Soft-deleted file 5c0c332dc2dee42b5070b806 
+2018-12-08 21:10:47.037 INFO  Retrieved information for user admin 
+2018-12-08 21:10:47.041 INFO  Created new Hash for user admin 
+2018-12-08 21:10:47.298 INFO  Registered new user admin 
+2018-12-08 21:12:05.646 INFO  Soft-deleted file 5c0c332dc2dee42b5070b806 
+2018-12-08 21:14:02.479 INFO  Retrieved all posts for undefined 
+2018-12-08 21:14:17.066 INFO  Retrieved all posts for undefined 
+2018-12-08 21:14:42.937 INFO  Retrieved all posts for undefined 
+2018-12-08 21:15:15.038 INFO  Retrieved all posts for undefined 
+2018-12-08 21:15:37.422 INFO  Retrieved all posts for posts 
+2018-12-08 21:15:43.307 INFO  Retrieved all posts for users 
+2018-12-08 21:16:26.150 INFO  Created a new post 
+2018-12-08 21:16:43.916 INFO  Created a new post 
+2018-12-08 21:17:42.566 INFO  Created a new post 
+2018-12-08 21:19:46.131 INFO  Created a new post 
+2018-12-08 21:26:20.610 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:26:25.552 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:26:38.538 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:26:41.643 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:28:29.420 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:30:06.185 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:30:26.770 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:31:00.302 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:31:13.145 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:31:26.504 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:32:25.330 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:32:38.723 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:34:32.570 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:34:47.860 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:35:19.462 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:35:33.810 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:35:40.889 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:36:45.221 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:37:09.070 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:37:23.969 INFO  Retrieved post with id 5c0c3572a704861ed067ef82 
+2018-12-08 21:38:15.257 INFO  Retrieved post with id 5c0c3572a704861ed067ef82, from posts 
+2018-12-08 21:38:25.373 INFO  Retrieved post with id 5c0c3572a704861ed067ef82, from colelction posts 
+2018-12-08 21:48:04.033 INFO  Retrieved all posts for posts 
+2018-12-08 21:48:38.865 INFO  Retrieved all posts for posts 
+2018-12-08 21:48:59.200 INFO  Retrieved all posts for posts 
+2018-12-08 21:49:26.182 INFO  Retrieved all posts for posts 
+2018-12-08 21:49:48.394 INFO  Retrieved all posts for posts 
+2018-12-08 21:50:05.375 INFO  Retrieved all posts for posts 
+2018-12-08 21:50:50.150 INFO  Retrieved all posts for posts 
+2018-12-08 21:51:09.863 INFO  Retrieved all posts for posts 
+2018-12-08 21:52:01.457 INFO  Retrieved all posts for posts 
+2018-12-08 21:53:05.949 INFO  Retrieved all posts for posts 
+2018-12-08 21:53:24.207 INFO  Retrieved all posts for posts 
+2018-12-08 21:54:16.378 INFO  Retrieved all posts for posts 
+2018-12-08 21:55:07.261 INFO  Retrieved all posts for posts 
+2018-12-08 21:55:37.171 INFO  Retrieved all posts for posts 
+2018-12-08 21:55:45.298 INFO  Retrieved all posts for posts 
+2018-12-08 21:56:40.243 INFO  Created a new post on collection posts 
+2018-12-08 21:56:41.779 INFO  Created a new post on collection posts 
+2018-12-08 21:56:49.096 INFO  Retrieved all posts for posts 
+2018-12-08 21:58:15.143 INFO  Retrieved all posts for posts 
+2018-12-08 21:58:40.258 INFO  Retrieved all posts for posts 
+2018-12-08 21:58:51.020 INFO  Retrieved all posts for posts 
+2018-12-08 21:59:41.833 INFO  Retrieved all posts for posts 
+2018-12-08 22:01:10.982 INFO  Retrieved all posts for posts 
+2018-12-08 22:01:16.384 INFO  Retrieved all posts for posts 
+2018-12-08 22:02:14.210 INFO  Retrieved all posts for posts 
+2018-12-08 22:04:21.365 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:05:00.336 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:05:23.028 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:05:46.077 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:05:54.147 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:06:01.081 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:06:24.154 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:06:33.599 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:06:45.250 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:08:06.269 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:08:09.978 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:08:33.048 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:08:44.022 INFO  Retrieved all posts for collection posts 
+2018-12-08 22:21:58.731 INFO  Retrieved information for user admin 
+2018-12-08 22:21:58.740 INFO  Comparing hash for user admin 
+2018-12-08 22:21:58.744 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 22:29:34.216 INFO  Retrieved information for user admin 
+2018-12-08 22:29:34.221 INFO  Comparing hash for user admin 
+2018-12-08 22:29:34.223 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 22:35:58.968 INFO  Retrieved information for user admin 
+2018-12-08 22:35:58.982 INFO  Comparing hash for user admin 
+2018-12-08 22:35:58.987 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 22:36:16.973 INFO  Retrieved information for user admin 
+2018-12-08 22:36:16.974 INFO  Comparing hash for user admin 
+2018-12-08 22:36:16.975 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 22:37:08.154 INFO  Retrieved information for user admin 
+2018-12-08 22:37:08.157 INFO  Comparing hash for user admin 
+2018-12-08 22:37:08.161 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 22:38:32.536 INFO  Retrieved information for user testuser 
+2018-12-08 22:38:32.541 INFO  Created new Hash for user testuser 
+2018-12-08 22:38:32.745 INFO  Registered new user testuser 
+2018-12-08 22:38:53.829 INFO  Retrieved information for user testuser 
+2018-12-08 22:39:19.357 INFO  Retrieved information for user testuser 
+2018-12-08 22:40:48.597 INFO  Retrieved information for user testuser 
+2018-12-08 22:42:22.023 INFO  Retrieved information for user testuser 
+2018-12-08 22:43:13.567 INFO  Retrieved information for user testuser 
+2018-12-08 22:44:07.717 INFO  Retrieved information for user testuser 
+2018-12-08 22:44:47.957 INFO  Retrieved information for user testuser 
+2018-12-08 22:44:47.962 INFO  Created new Hash for user testuser 
+2018-12-08 22:44:48.159 INFO  Registered new user testuser 
+2018-12-08 22:45:38.822 INFO  Retrieved information for user admin 
+2018-12-08 22:45:38.824 INFO  Comparing hash for user admin 
+2018-12-08 22:45:38.825 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 23:26:16.426 INFO  Retrieved information for user admin 
+2018-12-08 23:26:16.429 INFO  Comparing hash for user admin 
+2018-12-08 23:26:16.432 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 23:26:24.340 INFO  Retrieved information for user admin 
+2018-12-08 23:26:24.341 INFO  Comparing hash for user admin 
+2018-12-08 23:26:24.341 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 23:27:10.573 INFO  Retrieved information for user admin 
+2018-12-08 23:27:10.574 INFO  Comparing hash for user admin 
+2018-12-08 23:27:10.574 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-08 23:33:50.399 INFO  Retrieved information for user admin 
+2018-12-08 23:33:50.401 INFO  Comparing hash for user admin 
+2018-12-08 23:33:50.401 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-09 00:46:11.335 INFO  Retrieved information for user admin 
+2018-12-09 00:46:11.339 INFO  Comparing hash for user admin 
+2018-12-09 00:46:11.341 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-09 00:46:20.445 INFO  Retrieved information for user admin 
+2018-12-09 00:46:20.447 INFO  Comparing hash for user admin 
+2018-12-09 00:46:20.447 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-09 00:46:29.352 INFO  Retrieved information for user admin 
+2018-12-09 00:46:29.353 INFO  Comparing hash for user admin 
+2018-12-09 00:46:29.354 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-09 00:50:44.360 INFO  Retrieved information for user admin 
+2018-12-09 00:50:44.362 INFO  Comparing hash for user admin 
+2018-12-09 00:50:44.363 INFO  Signing a new token for admin token. Expires in 300m 

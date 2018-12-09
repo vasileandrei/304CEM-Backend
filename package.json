@@ -1,0 +1,27 @@
+{
+	"name": "Backend-304CEM",
+	"version": "1.0.0",
+	"description": "My API Description",
+	"keywords": [
+		"restify",
+		"template",
+		"boilerplate"
+	],
+	"scripts": {
+		"start": "node app.js"
+	},
+	"devDependencies": {
+		"eslint": "^5.10.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-plugin-import": "^2.14.0"
+	},
+	"dependencies": {
+		"bunyan": "^1.8.12",
+		"jsonwebtoken": "^8.4.0",
+		"mongodb": "^3.1.10",
+		"restify": "^6.3.4",
+		"restify-cors-middleware": "^1.1.1",
+		"restify-router": "^0.5.0",
+		"simple-node-logger": "^0.93.40"
+	}
+}
