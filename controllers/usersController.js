@@ -60,7 +60,7 @@ module.exports.register = async function (req, res) {
 module.exports.login = async function (req, res) {
   // Check req body viability
   if (req.body === undefined) req.body = {};
-  let formattedResponse;
+  let formatedResponse;
   const colName = req.body.colName;
   const username = req.body.username;
   const userHash = req.body.hash;
