@@ -4,11 +4,14 @@ const constants = require('./../globalConstants');
 const user = require('./../modules/user');
 const hash = require('./../modules/hash');
 const auth = require('./../modules/auth');
+const responseUtil = require('./../modules/serviceModels/ResponseUtil');
 
 // Register a new user
 // localhost:8080/api/v1/register
 module.exports.register = async function (req, res) {
   // Check req body viability
+  if (req.body === undefined) req.body = {};
+  let formatedResponse;
   const colName = req.body.colName;
   const username = req.body.username.toLowerCase();
   const userHash = req.body.usreHash;
@@ -30,20 +33,18 @@ module.exports.register = async function (req, res) {
       res.setHeader('accepts', 'POST');
       if (err) {
         // Send failed response
+        formatedResponse = responseUtil.CreateBaseReponse(false, err);
         res.status(constants.serverInternalError);
-        res.end({
-          hasBeenSuccessful: false,
-          error: err,
-          body: {},
-        });
+        res.send(formatedResponse);
       }
       // Send success response
-      res.status(constants.successAccepted);
-      res.send({
-        hasBeenSuccessful: true,
+      const respBody = {
         message: `Successfully registered user ${username}`,
-        body: {},
-      });
+        result: '',
+      };
+      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+      res.status(constants.successAccepted);
+      res.send(formatedResponse);
     });
   } else {
     res.send({
@@ -58,6 +59,8 @@ module.exports.register = async function (req, res) {
 // localhost:8080/api/v1/login
 module.exports.login = async function (req, res) {
   // Check req body viability
+  if (req.body === undefined) req.body = {};
+  let formattedResponse;
   const colName = req.body.colName;
   const username = req.body.username;
   const userHash = req.body.hash;
@@ -68,33 +71,28 @@ module.exports.login = async function (req, res) {
     if (compare) {
       // Generate a new token
       const token = await auth.JwtSign(dbUser);
-      res.status(constants.successAccepted);
-      res.send({
-        hasBeenSuccessful: true,
+      // Send success response
+      const respBody = {
         message: 'User successfuly logged in',
-        body: {
+        result: {
           email: dbUser.email,
           username,
           token,
-          message: `Welcome back, ${dbUser.username}`,
         },
-      });
+      };
+      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+      res.status(constants.successAccepted);
+      res.send(formatedResponse);
     } else {
-      // Send faield response
-      res.status(constants.clientNotFound);
-      res.send({
-        hasBeenSuccessful: false,
-        message: 'Username or password is wrong',
-        body: {},
-      });
+      // Send failed response
+      formatedResponse = responseUtil.CreateBaseReponse(false, 'Username or password wrong');
+      res.status(constants.serverInternalError);
+      res.send(formatedResponse);
     }
   } else {
-    // Send faield response
-    res.status(constants.clientNotFound);
-    res.send({
-      hasBeenSuccessful: false,
-      message: 'Username or password is wrong',
-      body: {},
-    });
+    // Send failed response
+    formatedResponse = responseUtil.CreateBaseReponse(false, 'Username or password wrong');
+    res.status(constants.serverInternalError);
+    res.send(formatedResponse);
   }
 };

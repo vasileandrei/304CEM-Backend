@@ -238,3 +238,7 @@
 2018-12-09 00:50:44.360 INFO  Retrieved information for user admin 
 2018-12-09 00:50:44.362 INFO  Comparing hash for user admin 
 2018-12-09 00:50:44.363 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-10 16:30:08.148 INFO  Signature succesfully vertified 
+2018-12-10 16:32:47.224 INFO  Retrieved information for user admin 
+2018-12-10 16:32:47.249 INFO  Comparing hash for user admin 
+2018-12-10 16:32:47.259 INFO  Signing a new token for admin token. Expires in 300m 

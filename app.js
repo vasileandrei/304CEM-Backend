@@ -29,6 +29,7 @@ server.use(restify.plugins.throttle({
   ip: true, // throttle per IP
 }));
 server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.urlEncodedBodyParser());
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.gzipResponse());

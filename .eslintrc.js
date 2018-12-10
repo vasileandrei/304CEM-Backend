@@ -21,7 +21,7 @@ module.exports = {
         "max-lines": ["error", 150],
         "max-nested-callbacks": ["error", 4],
         "max-params": ["error", 5],
-        "max-statements": ["error", 15],
+        "max-statements": ["error", 20],
         "no-trailing-spaces": 1,
         "no-magic-numbers": [1, {"ignore": [-1, 0, 1]}],
         "prefer-arrow-callback": 1,

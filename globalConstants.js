@@ -66,3 +66,21 @@ module.exports.mongoCredentials = {
   collectionName: 'test',
 };
 // -----------------------------------------------------
+
+
+// ------------ File Options ------------------------------------
+// --------------------------------------------------------------
+const biteSize = 1024;
+const tenMbLimit = 10;
+
+module.exports.fileExpire = '7 days';
+module.exports.fileSizeLimit = biteSize * biteSize * tenMbLimit;
+// --------------------------------------------------------------
+
+
+// ------------ File Options ------------------------------------
+// --------------------------------------------------------------
+module.exports.cloud_name = 'dpjue1flf';
+module.exports.api_key = '343849393888324';
+module.exports.api_secret = 'jWZvaE1uYvNpwTWT2AZSCYi-_As';
+// --------------------------------------------------------------
