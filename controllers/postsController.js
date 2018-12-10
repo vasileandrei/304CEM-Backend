@@ -31,7 +31,7 @@ module.exports.addOne = function (req, res) {
         result: '',
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successNoContent);
+      res.status(constants.successCreated);
       res.send(formatedResponse);
     }
   });
@@ -64,7 +64,7 @@ module.exports.getOne = function (req, res) {
         result: post,
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successNoContent);
+      res.status(constants.successAccepted);
       res.send(formatedResponse);
     }
   });
@@ -93,7 +93,7 @@ module.exports.softDel = function (req, res) {
         result,
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successAccepted);
+      res.status(constants.successNoContent);
       res.send(formatedResponse);
     }
   });

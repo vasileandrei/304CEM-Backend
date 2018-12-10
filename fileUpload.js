@@ -11,7 +11,6 @@ const bodyParser = require('body-parser');
 // const authCheck = require('./modules/middlewares/tokenMiddleware').AuthToken;
 const responseUtil = require('./modules/serviceModels/ResponseUtil');
 const constants = require('./globalConstants');
-const expires = require('expires');
 
 const port = 8085;
 
@@ -29,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Cloudinary settings -- store as <data>-<name>.<extension>
 //                     -- size limit at <constants.fileSizeLimit>
+
 const storage = cloudinaryStorage({
   cloudinary,
   folder: '304CEM',
@@ -38,19 +38,22 @@ const storage = cloudinaryStorage({
   },
   limists: constants.fileSizeLimit,
 });
+
 const parser = multer({ storage });
 
 // localhost:8085/api/v1/files/upload/:username/:email -- Receive file upload requests
 // Midleware - Check authentification
 //           - Save image in Cloudinary, use <image> as working name
-app.post('/api/v1/files/upload', parser.single('image'), (req, res) => {
+app.post('/api/v1/files/upload', parser.array('image', constants.maxUploads), (req, res) => {
+  // List of all the items uploaded
+  const filesList = [];
   let formatedResponse;
-  // Set expiration date for file <constants.fileExpire>
-  req.body.expires = expires.after(constants.fileExpire);
-  req.body.url = req.file.secure_url;
-  // console.log(req.body);
-  if (req.body.expires !== undefined && req.body.url !== undefined) {
-    formatedResponse = responseUtil.CreateDataReponse(true, '', req.body);
+  // Append files from request to list
+  req.files.forEach((value, index) => {
+    filesList[index] = value.secure_url;
+  });
+  if (filesList) {
+    formatedResponse = responseUtil.CreateDataReponse(true, '', { files: filesList });
     res.status(constants.successCreated);
     res.send(formatedResponse);
   } else {

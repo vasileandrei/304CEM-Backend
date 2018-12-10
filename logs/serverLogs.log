@@ -242,3 +242,9 @@
 2018-12-10 16:32:47.224 INFO  Retrieved information for user admin 
 2018-12-10 16:32:47.249 INFO  Comparing hash for user admin 
 2018-12-10 16:32:47.259 INFO  Signing a new token for admin token. Expires in 300m 
+2018-12-10 21:33:23.191 INFO  Created a new post on collection posts 
+2018-12-10 21:36:18.018 INFO  Created a new post on collection posts 
+2018-12-10 21:36:43.916 INFO  Created a new post on collection posts 
+2018-12-10 21:38:01.375 INFO  Created a new post on collection posts 
+2018-12-10 21:39:31.190 INFO  Created a new post on collection posts 
+2018-12-10 21:40:26.757 INFO  Created a new post on collection posts 

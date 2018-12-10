@@ -43,7 +43,7 @@ module.exports.register = async function (req, res) {
         result: '',
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successAccepted);
+      res.status(constants.successCreated);
       res.send(formatedResponse);
     });
   } else {

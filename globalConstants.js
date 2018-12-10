@@ -75,6 +75,7 @@ const tenMbLimit = 10;
 
 module.exports.fileExpire = '7 days';
 module.exports.fileSizeLimit = biteSize * biteSize * tenMbLimit;
+module.exports.maxUploads = 6;
 // --------------------------------------------------------------
 
 

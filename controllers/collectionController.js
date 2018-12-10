@@ -37,7 +37,7 @@ module.exports.createCollectionPost = function (req, res) {
         result: '',
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successNoContent);
+      res.status(constants.successCreated);
       res.send(formatedResponse);
     }
   });
