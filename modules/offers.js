@@ -51,7 +51,7 @@ function updateObject(offerDoc, expectedId) {
 // Create a new document in the offers collection
 module.exports.CreateOffer = function (postId, authorName, callback) {
   const newOffer = {
-    postId,
+    postId: String(postId),
     authorName,
     offers: [],
   };
@@ -74,8 +74,8 @@ module.exports.CreateOffer = function (postId, authorName, callback) {
 };
 
 // Append a new offer to the offers list in the offers collection
-module.exports.AddOffer = function (id, offers, callback) {
-  const findById = { _postId: id };
+module.exports.AddOffer = function (id, offers, user, callback) {
+  const findById = { postId: id };
   const updateField = { $push: { offers } };
   MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
     if (connErr) {
@@ -85,11 +85,12 @@ module.exports.AddOffer = function (id, offers, callback) {
     const dbo = db.db(mongo.dbName);
     dbo.collection(collectionName).findOneAndUpdate(findById, updateField, (dbErr, result) => {
       db.close();
-      if (dbErr) {
+      if (dbErr || result.lastErrorObject.n !== 1) {
         callback(dbErr);
         return;
       }
-      constants.fileLog.info(`Added new offer for ${id}, from ${offers.requestUser}`);
+      console.log(result);
+      constants.fileLog.info(`Added new offer for ${id}, from ${user}`);
       callback(null, result);
     });
   });
@@ -97,7 +98,7 @@ module.exports.AddOffer = function (id, offers, callback) {
 
 // Accept an offer
 module.exports.AcceptOffer = function (id, requestId, callback) {
-  const findById = { _postId: id };
+  const findById = { postId: id };
   MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
     if (connErr) {
       callback(connErr);
@@ -105,8 +106,8 @@ module.exports.AcceptOffer = function (id, requestId, callback) {
     }
     const dbo = db.db(mongo.dbName);
     // Find the post with all the offers
-    dbo.collection(collectionName).findOne(findById, (dbErr, result) => {
-      if (dbErr) {
+    dbo.collection(collectionName).findOne((findById), (dbErr, result) => {
+      if (dbErr || !result) {
         callback(dbErr);
         return;
       }
@@ -115,11 +116,11 @@ module.exports.AcceptOffer = function (id, requestId, callback) {
       // Use the object generated above (status: 'Accepted') and replace the offers list with just this one
       dbo.collection(collectionName).findOneAndUpdate(findById, { $set: { offers: [newObject] } }, (err, response) => {
         db.close();
-        if (err) {
+        if (err || response.lastErrorObject.n !== 1) {
           callback(err);
           return;
         }
-        constants.fileLog.info(`Accepted offer for ${id}`);
+        constants.fileLog.info(`Accepted offer for ${id}, by ${response.value.offers[0].requestUser}`);
         callback(null, response);
       });
     });

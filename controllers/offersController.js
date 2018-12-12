@@ -16,7 +16,7 @@ module.exports.addOffer = function (req, res) {
     requestMessage: req.body.message,
     status: 'Pending',
   };
-  offers.AddOffer(id, offer, (err) => {
+  offers.AddOffer(id, offer, offer.requestUser, (err) => {
     let formatedResponse;
     if (err) {
       // Send failed response
