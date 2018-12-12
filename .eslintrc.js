@@ -20,7 +20,7 @@ module.exports = {
         "max-len": ["warn", { "code": 120, "tabWidth": 4 }],
         "max-lines": ["error", 150],
         "max-nested-callbacks": ["error", 4],
-        "max-params": ["error", 5],
+        "max-params": ["error", 6],
         "max-statements": ["error", 20],
         "no-trailing-spaces": 1,
         "no-magic-numbers": [1, {"ignore": [-1, 0, 1]}],

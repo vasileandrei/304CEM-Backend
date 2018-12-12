@@ -2,6 +2,7 @@
 
 const constants = require('../globalConstants');
 const posts = require('./../modules/posts');
+const offer = require('./../modules/offers');
 const responseUtil = require('./../modules/serviceModels/ResponseUtil');
 
 // Add a new document
@@ -15,24 +16,38 @@ module.exports.addOne = function (req, res) {
   Object.keys(req.body).forEach((key) => {
     reqBody[key] = req.body[key];
   });
+  reqBody.price = `${reqBody.price}£`; // set price to default pound
+  reqBody.dateCreated = new Date().toLocaleString(); // set upload time
   reqBody.deleted = false; // set deleted flag false for new entries
-  posts.AddToCollection(colName, reqBody, (err) => {
+  // Add one item to the post collection
+  posts.AddToCollection(colName, reqBody, (postErr, reponse) => {
     res.setHeader('content-type', 'application/json');
     res.setHeader('accepts', 'POST');
-    if (err) {
+    if (postErr) {
       // Send failed response
-      formatedResponse = responseUtil.CreateBaseReponse(false, err);
+      formatedResponse = responseUtil.CreateBaseReponse(false, postErr);
       res.status(constants.serverInternalError);
       res.send(formatedResponse);
     } else {
-      // Send success response
-      const respBody = {
-        message: 'Successfully uploaded item',
-        result: '',
-      };
-      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successCreated);
-      res.send(formatedResponse);
+      // If item added successfuly, create an offer document
+      const postId = reponse.ops[0]._id;
+      offer.CreateOffer(postId, reqBody.authorName, (offerErr) => {
+        if (offerErr) {
+          // Send failed response
+          formatedResponse = responseUtil.CreateBaseReponse(false, offerErr);
+          res.status(constants.serverInternalError);
+          res.send(formatedResponse);
+        } else {
+          // Send success response
+          const respBody = {
+            message: 'Successfully uploaded item',
+            result: '',
+          };
+          formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+          res.status(constants.successCreated);
+          res.send(formatedResponse);
+        }
+      });
     }
   });
 };

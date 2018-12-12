@@ -6,6 +6,7 @@ const dbController = require('../controllers/collectionController');
 const usersController = require('../controllers/usersController');
 const adminController = require('../controllers/adminController');
 const postsController = require('../controllers/postsController');
+const offersController = require('../controllers/offersController');
 
 // Base Directory test Get
 myRouter.get('/', dbController.baseGet);
@@ -34,5 +35,10 @@ myRouter.get('/getAll', adminController.getAll);
 myRouter.post('/getAll', adminController.getAll);
 // Force delete document
 myRouter.del('/forceDel/:id', adminController.forceDel);
+
+// Add a new offer to an item
+myRouter.post('/addOffer', offersController.addOffer);
+// Accept an offer
+myRouter.post('/acceptOffer', offersController.acceptOffer);
 
 module.exports = myRouter;
