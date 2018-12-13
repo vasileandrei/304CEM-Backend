@@ -65,7 +65,7 @@ module.exports.acceptOffer = function (req, res) {
 // localhost:8080/api/v1/getAllOffers
 module.exports.getAllOffers = function (req, res) {
   const username = req.body.username;
-  offers.GetAllOffers(username, (err, result) => {
+  offers.GetAllOffers(username, (err, pendingList, acceptedList, boughtList) => {
     let formatedResponse;
     if (err) {
       // Send failed response
@@ -76,7 +76,11 @@ module.exports.getAllOffers = function (req, res) {
       // Send success response
       const respBody = {
         message: 'Successfully accepted offer',
-        result,
+        result: {
+          pendingList,
+          acceptedList,
+          boughtList,
+        },
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
       res.status(constants.successCreated);

@@ -56,14 +56,26 @@ function updateObject(offerDoc, expectedId) {
  * @returns {Array} list
  */
 function filterOffers(offers) {
-  const list = [];
+  const pendingList = [];
+  const acceptedList = [];
+  const boughtList = [];
+
   const acceptedStatus = 'Accepted';
+  const pendingStatus = 'Pending';
+  const boughtStatus = 'Bought';
+
   offers.forEach((element) => {
-    if (element.offers.length > 0 && element.offers[0].status !== acceptedStatus) {
-      list.push(element);
+    if (element.offers.length > 0) {
+      if (element.offers[0].status === pendingStatus) {
+        pendingList.push(element);
+      } else if (element.offers[0].status === acceptedStatus) {
+        acceptedList.push(element);
+      } else if (element.offers[0].status === boughtStatus) {
+        boughtList.push(element);
+      }
     }
   });
-  return list;
+  return [pendingList, acceptedList, boughtList];
 }
 
 // Create a new document in the offers collection
@@ -146,6 +158,9 @@ module.exports.AcceptOffer = function (id, requestId, callback) {
 
 // Get all offers for user
 module.exports.GetAllOffers = function (username, callback) {
+  const pendingList = 0;
+  const acceptedList = 1;
+  const boughtList = 2;
   MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
     if (connErr) {
       callback(connErr);
@@ -159,7 +174,7 @@ module.exports.GetAllOffers = function (username, callback) {
       }
       const filteredList = filterOffers(result);
       constants.fileLog.info(`Retrieved offers for user ${username}`);
-      callback(null, filteredList);
+      callback(null, filteredList[pendingList], filteredList[acceptedList], filteredList[boughtList]);
       db.close();
     });
   });
