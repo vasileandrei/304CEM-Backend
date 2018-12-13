@@ -14,12 +14,12 @@ module.exports.register = async function (req, res) {
   let formatedResponse;
   const colName = req.body.colName;
   const username = req.body.username.toLowerCase();
-  const userHash = req.body.usreHash;
+  const password = req.body.password;
   // Check if username is taken
   const userExists = await user.FindByUsername(colName, username);
   if (!userExists) {
     // Create a new hash key
-    const newHash = await hash.CreateHash(username, userHash);
+    const newHash = await hash.CreateHash(username, password);
     // Construct working object
     const insertObj = {
       username,
@@ -63,12 +63,12 @@ module.exports.login = async function (req, res) {
   let formatedResponse;
   const colName = req.body.colName;
   const username = req.body.username;
-  const userHash = req.body.hash;
+  const password = req.body.password;
   const dbUser = await user.FindByUsername(colName, username);
   if (dbUser) {
     // Compare provided password and stored password
-    const compare = await hash.compareHash(username, userHash, dbUser.hash);
-    if (compare) {
+    const compare = await hash.compareHash(username, password, dbUser.hash);
+    if (compare === true) {
       // Generate a new token
       const token = await auth.JwtSign(dbUser);
       // Send success response
@@ -84,15 +84,11 @@ module.exports.login = async function (req, res) {
       res.status(constants.successAccepted);
       res.send(formatedResponse);
     } else {
-      // Send failed response
-      formatedResponse = responseUtil.CreateBaseReponse(false, 'Username or password wrong');
-      res.status(constants.serverInternalError);
-      res.send(formatedResponse);
+    // Send forbidden response
+      res.send({ message: 'Username or password wrong' });
     }
   } else {
     // Send failed response
-    formatedResponse = responseUtil.CreateBaseReponse(false, 'Username or password wrong');
-    res.status(constants.serverInternalError);
-    res.send(formatedResponse);
+    res.send({ message: 'Username or password wrong' });
   }
 };

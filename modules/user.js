@@ -44,7 +44,7 @@ module.exports.FindByUsername = (colName, username) => new Promise((resolve) => 
       return;
     }
     const dbo = db.db(mongo.dbName);
-    dbo.collection(collectionName).find({ username, deleted: { $eq: false } }).toArray((dbErr, result) => {
+    dbo.collection(collectionName).find({ username: { $regex: `.*${username}.*` }, deleted: { $eq: false } }).toArray((dbErr, result) => {
       if (dbErr) {
         resolve(false);
         return;
