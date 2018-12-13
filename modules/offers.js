@@ -48,6 +48,24 @@ function updateObject(offerDoc, expectedId) {
   return foundObj;
 }
 
+/**
+ * Filter through all the offers and eject the ones that
+ * have already been accepted or payed
+ *
+ * @param {Array} offers
+ * @returns {Array} list
+ */
+function filterOffers(offers) {
+  const list = [];
+  const acceptedStatus = 'Accepted';
+  offers.forEach((element) => {
+    if (element.offers.length > 0 && element.offers[0].status !== acceptedStatus) {
+      list.push(element);
+    }
+  });
+  return list;
+}
+
 // Create a new document in the offers collection
 module.exports.CreateOffer = function (postId, authorName, callback) {
   const newOffer = {
@@ -89,7 +107,6 @@ module.exports.AddOffer = function (id, offers, user, callback) {
         callback(dbErr);
         return;
       }
-      console.log(result);
       constants.fileLog.info(`Added new offer for ${id}, from ${user}`);
       callback(null, result);
     });
@@ -123,6 +140,27 @@ module.exports.AcceptOffer = function (id, requestId, callback) {
         constants.fileLog.info(`Accepted offer for ${id}, by ${response.value.offers[0].requestUser}`);
         callback(null, response);
       });
+    });
+  });
+};
+
+// Get all offers for user
+module.exports.GetAllOffers = function (username, callback) {
+  MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
+    if (connErr) {
+      callback(connErr);
+      return;
+    }
+    const dbo = db.db(mongo.dbName);
+    dbo.collection(collectionName).find({ authorName: { $regex: `.*${username}.*` } }).toArray((dbErr, result) => {
+      if (dbErr) {
+        callback(false);
+        return;
+      }
+      const filteredList = filterOffers(result);
+      constants.fileLog.info(`Retrieved offers for user ${username}`);
+      callback(null, filteredList);
+      db.close();
     });
   });
 };

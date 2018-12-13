@@ -24,6 +24,8 @@ myRouter.post('/login', usersController.login);
 myRouter.get('/getDoc/:id', postsController.getOne);
 // Get Document
 myRouter.post('/getDoc/:id', postsController.getOne);
+// Get all document from the DB (not the soft-deleted ones)
+myRouter.post('/getAllPosts', postsController.getAllPosts);
 // Add document to the DB
 myRouter.post('/addDoc', postsController.addOne);
 // Soft Delete Document
@@ -40,5 +42,7 @@ myRouter.del('/forceDel/:id', adminController.forceDel);
 myRouter.post('/addOffer', offersController.addOffer);
 // Accept an offer
 myRouter.post('/acceptOffer', offersController.acceptOffer);
+// Get all document from the DB (including soft-deleted ones)
+myRouter.post('/getAllOffers', offersController.getAllOffers);
 
 module.exports = myRouter;

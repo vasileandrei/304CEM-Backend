@@ -7,6 +7,7 @@ const responseUtil = require('./../modules/serviceModels/ResponseUtil');
 // Find all documents in the collection
 // localhost:8080/api/v1/getAll
 module.exports.getAll = function (req, res) {
+  console.log('reach');
   if (req.body === undefined) req.body = {};
   let formatedResponse;
   const colName = req.body.colName;

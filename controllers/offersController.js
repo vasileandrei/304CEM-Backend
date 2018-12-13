@@ -60,3 +60,27 @@ module.exports.acceptOffer = function (req, res) {
     }
   });
 };
+
+// Get all the offers for one user
+// localhost:8080/api/v1/getAllOffers
+module.exports.getAllOffers = function (req, res) {
+  const username = req.body.username;
+  offers.GetAllOffers(username, (err, result) => {
+    let formatedResponse;
+    if (err) {
+      // Send failed response
+      formatedResponse = responseUtil.CreateBaseReponse(false, err);
+      res.status(constants.serverInternalError);
+      res.send(formatedResponse);
+    } else {
+      // Send success response
+      const respBody = {
+        message: 'Successfully accepted offer',
+        result,
+      };
+      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+      res.status(constants.successCreated);
+      res.send(formatedResponse);
+    }
+  });
+};

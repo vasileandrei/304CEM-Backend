@@ -116,3 +116,24 @@ module.exports.UpdateById = function (colName, id, action, callback) {
     });
   });
 };
+
+module.exports.FindAllPosts = function (colName, callback) {
+  if (colName) collectionName = colName;
+  MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
+    if (connErr) {
+      callback(connErr);
+      return;
+    }
+    const dbo = db.db(mongo.dbName);
+    // dbo.collection(collectionName).find({}).toArray((dcErr, result) => {
+    dbo.collection(collectionName).find({ deleted: { $eq: false } }).toArray((dcErr, result) => {
+      db.close();
+      if (dcErr) {
+        callback(dcErr);
+        return;
+      }
+      constants.fileLog.info(`Retrieved all posts for collection ${collectionName}`);
+      callback(null, result);
+    });
+  });
+};
