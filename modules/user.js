@@ -67,6 +67,7 @@ module.exports.AddToFav = function (username, id, callback) {
     }
     const dbo = db.db(mongo.dbName);
     dbo.collection(collectionName).findOne((findById), (dbErr, result) => {
+      if (!result.favourites) result.favourites = [];
       if (dbErr || !result) {
         callback(dbErr);
         return;
