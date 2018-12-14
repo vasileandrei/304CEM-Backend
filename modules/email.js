@@ -10,7 +10,6 @@ const constants = require('./../globalConstants');
  * @param {string} fileId
  */
 module.exports.customerSendEmail = (email, fileId) => new Promise((resolve) => {
-
   // Define type of connection and server account
   mailer.createTestAccount(() => {
     const transporter = mailer.createTransport({
@@ -62,7 +61,7 @@ module.exports.customerSendEmail = (email, fileId) => new Promise((resolve) => {
         // Error reason - most likely leak of recipients
         constants.fileLog.error(`Failed to send an email to ${email}, for file ${fileId}. ${error.message}`);
         resolve([false, error.message]);
-        return
+        return;
       }
       // Send successful response
       constants.fileLog.info(`Successfully sent an email to ${email}, for file ${fileId}`);
@@ -80,7 +79,6 @@ module.exports.customerSendEmail = (email, fileId) => new Promise((resolve) => {
  * @param {string} customerMessage
  */
 module.exports.feedbackEmail = (name, address, customerMessage) => new Promise((resolve) => {
-
   // Define type of connection and server account
   mailer.createTestAccount(() => {
     const transporter = mailer.createTransport({
