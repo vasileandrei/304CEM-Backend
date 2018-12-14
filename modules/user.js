@@ -57,7 +57,7 @@ module.exports.FindByUsername = (colName, username) => new Promise((resolve) => 
   });
 });
 
-module.exports.AddToFAv = function (username, id, callback) {
+module.exports.AddToFav = function (username, id, callback) {
   const findById = { username };
   const updateField = { $push: { favourites: id } };
   MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
@@ -66,14 +66,25 @@ module.exports.AddToFAv = function (username, id, callback) {
       return;
     }
     const dbo = db.db(mongo.dbName);
-    dbo.collection(collectionName).findOneAndUpdate(findById, updateField, (dbErr) => {
-      db.close();
-      if (dbErr) {
+    dbo.collection(collectionName).findOne((findById), (dbErr, result) => {
+      if (dbErr || !result) {
         callback(dbErr);
         return;
       }
-      constants.fileLog.info(`Added a post to favourite for id ${id}`);
-      callback(null);
+      if (result.favourites.indexOf(id) < 0) {
+        dbo.collection(collectionName).findOneAndUpdate(findById, updateField, (findErr) => {
+          db.close();
+          if (findErr) {
+            callback(findErr);
+            return;
+          }
+          constants.fileLog.info(`Added a post to favourite for id ${id}`);
+          callback(null, 'Added');
+        });
+      } else {
+        constants.fileLog.info(`Post already is to favourites ${id}`);
+        callback(null, 'Already there');
+      }
     });
   });
 };
@@ -105,13 +116,12 @@ module.exports.DelFav = function (username, id, callback) {
       return;
     }
     const dbo = db.db(mongo.dbName);
-    dbo.collection(collectionName).findOneAndUpdate(findById, updateField, (dbErr, result) => {
+    dbo.collection(collectionName).findOneAndUpdate(findById, updateField, (findErr) => {
       db.close();
-      if (dbErr) {
-        callback(dbErr);
+      if (findErr) {
+        callback(findErr);
         return;
       }
-      console.log(result);
       constants.fileLog.info(`Removed a post from favourite for id ${id}`);
       callback(null);
     });

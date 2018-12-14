@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // Strinctly admin access controller
 
 const constants = require('./../globalConstants');
@@ -100,7 +101,7 @@ module.exports.addToFav = function (req, res) {
   let formatedResponse;
   const username = req.body.username;
   const id = req.body.id;
-  user.AddToFAv(username, id, (err) => {
+  user.AddToFav(username, id, (err, response) => {
     res.setHeader('content-type', 'application/json');
     res.setHeader('accepts', 'POST');
     if (err) {
@@ -108,13 +109,20 @@ module.exports.addToFav = function (req, res) {
       formatedResponse = responseUtil.CreateBaseReponse(false, err);
       res.status(constants.serverInternalError);
       res.send(formatedResponse);
-    } else {
-      // Send success response
+    } else if (response === 'Already there') {
       const respBody = {
-        message: 'Successfully retreieved items',
+        message: 'Not adding post to favourites. It\'s already there',
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
       res.status(constants.successAccepted);
+      res.send(formatedResponse);
+    } else if (response === 'Added') {
+      // Send success response
+      const respBody = {
+        message: 'Ssccessfully added to favourites',
+      };
+      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+      res.status(constants.successCreated);
       res.send(formatedResponse);
     }
   });
@@ -154,7 +162,7 @@ module.exports.delFav = function (req, res) {
   const id = req.body.id;
   user.DelFav(username, id, (err, result) => {
     res.setHeader('content-type', 'application/json');
-    res.setHeader('accepts', 'POST');
+    res.setHeader('accepts', 'PUT');
     if (err) {
       // Send failed response
       formatedResponse = responseUtil.CreateBaseReponse(false, err);
@@ -163,11 +171,11 @@ module.exports.delFav = function (req, res) {
     } else {
       // Send success response
       const respBody = {
-        message: 'Successfully retreieved items',
+        message: `Successfully deleted item ${id}, from ${username}'s favourites`,
         result,
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
-      res.status(constants.successAccepted);
+      res.status(constants.successNoContent);
       res.send(formatedResponse);
     }
   });

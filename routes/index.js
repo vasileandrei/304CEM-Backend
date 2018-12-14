@@ -24,7 +24,7 @@ myRouter.post('/addToFav', usersController.addToFav);
 // Get all favourites
 myRouter.post('/getFavs', usersController.getFavs);
 // Get all favourites
-myRouter.post('/delFav', usersController.delFav);
+myRouter.put('/delFav', usersController.delFav);
 
 // Get Document
 myRouter.get('/getDoc/:id', postsController.getOne);
