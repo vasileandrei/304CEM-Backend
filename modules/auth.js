@@ -9,11 +9,13 @@ const constants = require('./../globalConstants');
  * @param {String} hashToken
  */
 module.exports.JwtSign = info => new Promise((resolve) => {
+  if (!info.favourites) info.favourites = [];
   // Construct working obj -- Token payload
   const userInfo = {
     username: info.username,
     email: info.email,
     role: info.role,
+    favourites: info.favourites,
   };
   // Sign token using secret signatrure
   jwt.sign({ userInfo }, constants.tokenSignature, { expiresIn: constants.tokenExpireTime }, (_, token) => {

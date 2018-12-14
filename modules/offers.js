@@ -1,3 +1,6 @@
+/* eslint-disable max-lines */
+/* eslint-disable no-plusplus */
+/* eslint-disable max-lines */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 // Offers access module
@@ -32,6 +35,34 @@ const collectionName = 'offers';
 //         }
 //     ]
 // }
+
+/**
+ * Find offers where a usser bidded on
+ *
+ * @param {Array} offerDocs
+ * @param {string} username
+ * @returns
+ */
+function findOffersByRequestUser(offerDocs, username) {
+  const allOffers = [];
+  // For every offer document
+  for (let i = 0; i < offerDocs.length; i++) {
+    // For every offer in each document
+    for (let j = 0; j < offerDocs[i].offers.length; j++) {
+      if (offerDocs[i].offers[j].requestUser) {
+        offerDocs[i].offers[j].requestUser = offerDocs[i].offers[j].requestUser.toLowerCase();
+      }
+      // Find the ones where orequestUser === username
+      if (offerDocs[i].offers[j].requestUser === username) {
+        // Over-write all offers with the latest offer
+        offerDocs[i].offers = offerDocs[i].offers[j];
+        // Push to list
+        allOffers.push(offerDocs[i]);
+      }
+    }
+  }
+  return allOffers;
+}
 
 /**
  * Find the object in offers and uptate the status flag
@@ -175,6 +206,28 @@ module.exports.GetAllOffers = function (username, callback) {
       const filteredList = filterOffers(result);
       constants.fileLog.info(`Retrieved offers for user ${username}`);
       callback(null, filteredList[pendingList], filteredList[acceptedList], filteredList[boughtList]);
+      db.close();
+    });
+  });
+};
+
+
+// Get all offers for user
+module.exports.GetAllMyOffers = function (username, callback) {
+  MongoClient.connect(url, { useNewUrlParser: true }, (connErr, db) => {
+    if (connErr) {
+      callback(connErr);
+      return;
+    }
+    const dbo = db.db(mongo.dbName);
+    dbo.collection(collectionName).find({}).toArray((dbErr, result) => {
+      if (dbErr) {
+        callback(false);
+        return;
+      }
+      const filteredList = findOffersByRequestUser(result, username);
+      constants.fileLog.info(`Retrieved all offers from all document, for user ${username}`);
+      callback(null, filteredList);
       db.close();
     });
   });

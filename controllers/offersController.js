@@ -75,12 +75,36 @@ module.exports.getAllOffers = function (req, res) {
     } else {
       // Send success response
       const respBody = {
-        message: 'Successfully accepted offer',
+        message: `Successfully retireved all offers of user ${username}`,
         result: {
           pendingList,
           acceptedList,
           boughtList,
         },
+      };
+      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+      res.status(constants.successCreated);
+      res.send(formatedResponse);
+    }
+  });
+};
+
+// Get all the offers for one user
+// localhost:8080/api/v1/getAllMyOffers
+module.exports.getAllMyOffers = function (req, res) {
+  const username = req.body.username;
+  offers.GetAllMyOffers(username, (err, allOffers) => {
+    let formatedResponse;
+    if (err) {
+      // Send failed response
+      formatedResponse = responseUtil.CreateBaseReponse(false, err);
+      res.status(constants.serverInternalError);
+      res.send(formatedResponse);
+    } else {
+      // Send success response
+      const respBody = {
+        message: `Successfully retireved all offers from all documents, for user ${username}`,
+        result: allOffers,
       };
       formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
       res.status(constants.successCreated);

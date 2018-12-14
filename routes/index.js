@@ -19,6 +19,12 @@ myRouter.del('/dropCollection', dbController.dropCollectionDel);
 myRouter.post('/register', usersController.register);
 // Register a new user
 myRouter.post('/login', usersController.login);
+// Add to Favourites
+myRouter.post('/addToFav', usersController.addToFav);
+// Get all favourites
+myRouter.post('/getFavs', usersController.getFavs);
+// Get all favourites
+myRouter.post('/delFav', usersController.delFav);
 
 // Get Document
 myRouter.get('/getDoc/:id', postsController.getOne);
@@ -26,6 +32,8 @@ myRouter.get('/getDoc/:id', postsController.getOne);
 myRouter.post('/getDoc/:id', postsController.getOne);
 // Get all document from the DB (not the soft-deleted ones)
 myRouter.post('/getAllPosts', postsController.getAllPosts);
+// Get all document from the DB (not the soft-deleted ones)
+myRouter.post('/getAllPostsById', postsController.getAllPostsById);
 // Add document to the DB
 myRouter.post('/addDoc', postsController.addOne);
 // Soft Delete Document
@@ -44,5 +52,7 @@ myRouter.post('/addOffer', offersController.addOffer);
 myRouter.post('/acceptOffer', offersController.acceptOffer);
 // Get all document from the DB (including soft-deleted ones)
 myRouter.post('/getAllOffers', offersController.getAllOffers);
+// Get all offers that the user has bidded on
+myRouter.post('/getAllMyOffers', offersController.getAllMyOffers);
 
 module.exports = myRouter;

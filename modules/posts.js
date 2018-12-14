@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 
 // Files access module
 
@@ -79,6 +80,7 @@ module.exports.FindOne = function (colName, id, callback) {
 //       return;
 //     }
 //     const dbo = db.db(mongo.dbName);
+// eslint-disable-next-line max-len
 //     dbo.collection(mongo.collectionName).find({ ingredients: { $regex: `.*${body.query.recipe}.*` }, deleted: { $eq: false } }).toArray((err, result) => {
 //       if (err) {
 //         console.log('Error');
@@ -125,7 +127,6 @@ module.exports.FindAllPosts = function (colName, callback) {
       return;
     }
     const dbo = db.db(mongo.dbName);
-    // dbo.collection(collectionName).find({}).toArray((dcErr, result) => {
     dbo.collection(collectionName).find({ deleted: { $eq: false } }).toArray((dcErr, result) => {
       db.close();
       if (dcErr) {
@@ -135,5 +136,28 @@ module.exports.FindAllPosts = function (colName, callback) {
       constants.fileLog.info(`Retrieved all posts for collection ${collectionName}`);
       callback(null, result);
     });
+  });
+};
+
+module.exports.FindAllPostsById = function (idList, callback) {
+  const newIdList = [];
+  admin.FindAll(collectionName, (err, list) => {
+    if (err) {
+      callback(err);
+    } else {
+      idList.forEach((item) => {
+        // eslint-disable-next-line array-callback-return
+        const oneItem = list.find((o) => {
+          if (String(o._id) === item.postId) newIdList.push(o);
+        });
+        if (oneItem) {
+          if (!oneItem.deleted) {
+            newIdList.push(oneItem);
+          }
+        }
+      });
+      constants.fileLog.info(`Retrieved all posts for id list: ${newIdList}`);
+      callback(null, newIdList);
+    }
   });
 };

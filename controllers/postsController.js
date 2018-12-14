@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 // Document related actions -- User access
 
 const constants = require('../globalConstants');
@@ -122,6 +124,34 @@ module.exports.getAllPosts = function (req, res) {
   const colName = req.body.colName;
   // Initiate database method -- Find All
   posts.FindAllPosts(colName, (err, result) => {
+    res.setHeader('content-type', 'application/json');
+    res.setHeader('accepts', 'GET', 'POST');
+    if (err) {
+      // Send failed response
+      formatedResponse = responseUtil.CreateBaseReponse(false, err);
+      res.status(constants.serverInternalError);
+      res.send(formatedResponse);
+    } else {
+      // Send success response
+      const respBody = {
+        message: 'Successfully retreieved items',
+        result,
+      };
+      formatedResponse = responseUtil.CreateDataReponse(true, '', respBody);
+      res.status(constants.successAccepted);
+      res.send(formatedResponse);
+    }
+  });
+};
+
+// Find all documents in the collection
+// localhost:8080/api/v1/getAllPostsById
+module.exports.getAllPostsById = function (req, res) {
+  if (req.body === undefined) req.body = {};
+  let formatedResponse;
+  const idList = req.body.idList;
+  // Initiate database method -- Find All
+  posts.FindAllPostsById(idList, (err, result) => {
     res.setHeader('content-type', 'application/json');
     res.setHeader('accepts', 'GET', 'POST');
     if (err) {
